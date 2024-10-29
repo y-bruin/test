@@ -1,0 +1,43 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - '*'
+
+
+jobs:
+  prepare-windows:
+    runs-on: windows-latest
+    defaults:
+      run:
+        shell: msys2 {0}
+    steps:
+      - uses: actions/checkout@v3
+      - id: cache
+        uses: actions/cache@v3
+        with:
+          path: pkg
+          key: windows-${{ env.sha_short }}
+          enableCrossOsArchive: true
+        
+              
+  release:
+    runs-on: ubuntu-latest
+    needs: [prepare-windows]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Install zstd
+        run: sudo apt-get update && sudo apt-get install -y zstd
+
+      - shell: bash
+        run: echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
+
+      - uses: actions/cache@v3
+        with:
+          path: dist
+          enableCrossOsArchive: true
+          key: windows-${{ env.sha_short }}
