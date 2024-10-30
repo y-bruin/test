@@ -17,7 +17,7 @@ jobs:
       - id: cache
         uses: actions/cache@v3
         with:
-          path: .\.github\workflows
+          path: .github\workflows
           key: windows-${{ env.sha_short }}
           enableCrossOsArchive: true
         
