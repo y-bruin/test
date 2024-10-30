@@ -36,7 +36,7 @@ jobs:
       - shell: bash
         run: echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
 
-      - uses: actions/cache@v4
+      - uses: actions/cache/restore@v3
         with:
           path: ./dist
           enableCrossOsArchive: true
