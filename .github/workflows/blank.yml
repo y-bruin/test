@@ -17,7 +17,7 @@ jobs:
       - id: cache
         uses: actions/cache@v4
         with:
-          path: .github
+          path: ${{ github.workspace }}/.github
           key: windows-${{ env.sha_short }}
           enableCrossOsArchive: true
         
@@ -38,6 +38,6 @@ jobs:
 
       - uses: actions/cache/restore@v3
         with:
-          path: ./dist
+          path: ${{ github.workspace }}/dist
           enableCrossOsArchive: true
           key: windows-${{ env.sha_short }}   
