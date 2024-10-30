@@ -40,4 +40,6 @@ jobs:
         with:
           path: ./dist
           enableCrossOsArchive: true
-          key: windows-${{ env.sha_short }}
+          key: windows-${{ env.sha_short }}        
+          restore-keys: |
+             windows-${{ env.sha_short }}       
