@@ -15,7 +15,7 @@ jobs:
       - shell: bash
         run: echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
       - id: cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: .github\workflows
           key: windows-${{ env.sha_short }}
@@ -36,7 +36,7 @@ jobs:
       - shell: bash
         run: echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
 
-      - uses: actions/cache@v3
+      - uses: actions/cache@v4
         with:
           path: ./dist
           enableCrossOsArchive: true
