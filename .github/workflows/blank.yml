@@ -13,6 +13,8 @@ jobs:
       - shell: bash
         run: echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
       - run: mkdir test && touch test/hello
+      - run: choco install gzip
+      - run: choco install zstandard
       - id: cache
         uses: actions/cache@v4
         with:
